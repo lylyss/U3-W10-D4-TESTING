@@ -5,17 +5,17 @@ const AddComment = ({ asin }) => {
   const [comment, setComment] = useState({
     comment: "",
     rate: 1,
-    elementId: null
+    elementId: null,
   });
 
   useEffect(() => {
-    setComment(c => ({
+    setComment((c) => ({
       ...c,
-      elementId: asin
+      elementId: asin,
     }));
   }, [asin]);
 
-  const sendComment = async e => {
+  const sendComment = async (e) => {
     e.preventDefault();
     try {
       let response = await fetch("https://striveschool-api.herokuapp.com/api/comments", {
@@ -23,15 +23,16 @@ const AddComment = ({ asin }) => {
         body: JSON.stringify(comment),
         headers: {
           "Content-type": "application/json",
-          Authorization: "Bearer INSERISCI_IL_TUO_TOKEN"
-        }
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODI1ZjJmMzFlYmU4MjAwMTUwOWYzMjQiLCJpYXQiOjE3NDczMTc0OTEsImV4cCI6MTc0ODUyNzA5MX0.RvlheLp-mP_qB4t8n1Z_V613km7395Hs3aXIdSMAVMI",
+        },
       });
       if (response.ok) {
         alert("Recensione inviata!");
         setComment({
           comment: "",
           rate: 1,
-          elementId: null
+          elementId: null,
         });
       } else {
         throw new Error("Qualcosa è andato storto");
@@ -50,10 +51,10 @@ const AddComment = ({ asin }) => {
             type="text"
             placeholder="Inserisci qui il testo"
             value={comment.comment}
-            onChange={e =>
+            onChange={(e) =>
               setComment({
                 ...comment,
-                comment: e.target.value
+                comment: e.target.value,
               })
             }
           />
@@ -63,10 +64,10 @@ const AddComment = ({ asin }) => {
           <Form.Control
             as="select"
             value={comment.rate}
-            onChange={e =>
+            onChange={(e) =>
               setComment({
                 ...comment,
-                rate: e.target.value
+                rate: e.target.value,
               })
             }
           >

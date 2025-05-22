@@ -1,13 +1,14 @@
 import { Button, ListGroup } from "react-bootstrap";
 
 const SingleComment = ({ comment }) => {
-  const deleteComment = async asin => {
+  const deleteComment = async (asin) => {
     try {
       let response = await fetch("https://striveschool-api.herokuapp.com/api/comments/" + asin, {
         method: "DELETE",
         headers: {
-          Authorization: "Bearer INSERISCI_IL_TUO_TOKEN"
-        }
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODI1ZjJmMzFlYmU4MjAwMTUwOWYzMjQiLCJpYXQiOjE3NDczMTc0OTEsImV4cCI6MTc0ODUyNzA5MX0.RvlheLp-mP_qB4t8n1Z_V613km7395Hs3aXIdSMAVMI",
+        },
       });
       if (response.ok) {
         alert("La recensione è stata elimata!");
